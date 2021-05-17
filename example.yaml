@@ -1,7 +1,15 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: quake
+  labels:
+    name: quake
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: quake
+  namespace: quake
 spec:
   selector:
     matchLabels:
@@ -58,6 +66,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: quake
+  namespace: quake
 spec:
   type: NodePort
   selector:
@@ -80,6 +89,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: quake3-server-config
+  namespace: quake
 data:
   config.yaml: |
     fragLimit: 25
